@@ -1,0 +1,2392 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Team Charlie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;600&family=Reenie+Beanie&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --tint: #f2f6fc;
+        --paper: #ffffff;
+        --ink: #14213d;
+        --muted: #566078;
+        --red: #d4202f;
+        --blue: #2b5db8;
+        --sun: #ffc21a;
+        --line: #d9e0ec;
+        --rule: #c9d6ee;
+        --serif: "Young Serif", Georgia, serif;
+        --body: "Instrument Sans", "Segoe UI", sans-serif;
+        --hand: "Reenie Beanie", "Bradley Hand", cursive;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        color-scheme: light;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 400 1.05rem/1.65 var(--body);
+        padding-bottom: 5.5rem;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .air {
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--red) 0 14px,
+          #fff 14px 24px,
+          var(--blue) 24px 38px,
+          #fff 38px 48px
+        );
+      }
+      .wrap {
+        max-width: 62rem;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+      section {
+        padding: 4rem 0;
+      }
+      h2 {
+        font: 400 clamp(1.8rem, 5.5vw, 2.8rem)/1.08 var(--serif);
+        margin: 0 0 0.6rem;
+        letter-spacing: -0.01em;
+      }
+      .lead {
+        color: var(--muted);
+        max-width: 36rem;
+        margin: 0 0 2.6rem;
+        font-size: 1.12rem;
+        line-height: 1.75;
+      }
+      .hand {
+        font-family: var(--hand);
+        font-size: 1.6rem;
+        line-height: 1.1;
+      }
+
+      /* hero: kartu pos */
+      .post {
+        padding: 12px;
+        margin-top: 1.5rem;
+      }
+      .post-in {
+        background: var(--paper);
+        padding: clamp(1.4rem, 4vw, 3rem);
+        display: grid;
+        gap: 2rem;
+        position: relative;
+      }
+      .post h1 {
+        font: 400 clamp(2.5rem, 9vw, 5rem)/1 var(--serif);
+        margin: 0.4rem 0 1.2rem;
+        letter-spacing: -0.02em;
+      }
+      .post p {
+        max-width: 28rem;
+        color: var(--muted);
+        margin: 0 0 1.5rem;
+      }
+      .to {
+        color: var(--red);
+        display: block;
+        font-size: 1.9rem;
+      }
+      .btn {
+        display: inline-flex;
+        gap: 0.6rem;
+        align-items: center;
+        background: var(--red);
+        color: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.8rem 1.4rem;
+        font-weight: 600;
+      }
+      .btn:hover {
+        background: #b81a28;
+      }
+      .mail {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+      .stamp {
+        width: 6.5rem;
+        aspect-ratio: 3/4;
+        background: var(--sun);
+        color: #14213d;
+        padding: 0.5rem;
+        border: 3px dotted var(--paper);
+        outline: 2px solid var(--sun);
+        transform: rotate(3deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font: 400 0.95rem/1.1 var(--serif);
+      }
+      .stamp b {
+        font: 400 2rem/1 var(--serif);
+      }
+      .pm {
+        width: 9rem;
+        height: 9rem;
+        color: var(--blue);
+        transform: rotate(-12deg);
+        margin-left: -2.5rem;
+        margin-top: 1rem;
+      }
+      @media (min-width: 760px) {
+        .post-in {
+          grid-template-columns: 1.4fr 1fr;
+        }
+        .mail {
+          justify-content: center;
+          align-items: center;
+        }
+        .stamp {
+          width: 8rem;
+        }
+        .pm {
+          width: 11rem;
+          height: 11rem;
+        }
+      }
+
+      /* kisah (urutan) */
+      .tl {
+        list-style: none;
+        margin: 0;
+        padding: 0 0 0 1.6rem;
+        border-left: 3px solid var(--line);
+        max-width: 40rem;
+      }
+      .tl li {
+        position: relative;
+        padding: 0 0 2.2rem 1rem;
+      }
+      .tl li::before {
+        content: "";
+        position: absolute;
+        left: -2.15rem;
+        top: 0.45rem;
+        width: 0.95rem;
+        height: 0.95rem;
+        border-radius: 50%;
+        background: var(--red);
+        border: 3px solid var(--bg);
+      }
+      .tl .hand {
+        color: var(--blue);
+        display: block;
+      }
+      .tl h3 {
+        font: 400 1.35rem/1.2 var(--serif);
+        margin: 0.1rem 0 0.3rem;
+      }
+      .tl p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      /* dinding */
+      .tint {
+        background: var(--tint);
+        border-block: 1px solid var(--line);
+      }
+      .grid {
+        columns: 2;
+        column-gap: 1.4rem;
+      }
+      @media (min-width: 760px) {
+        .grid {
+          columns: 3;
+          column-gap: 2rem;
+        }
+      }
+      .ph {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        font: 400 3rem var(--serif);
+        color: rgba(255, 255, 255, 0.92);
+        overflow: hidden;
+      }
+      .ph img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .pic {
+        display: block;
+        width: 100%;
+        break-inside: avoid;
+        margin: 0 0 1.9rem;
+        position: relative;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 0.5rem 0.5rem 0;
+        text-align: left;
+        box-shadow: 4px 5px 0 var(--line);
+        transition: transform 0.2s;
+      }
+      .pic:nth-child(4n + 1) {
+        transform: rotate(-1.8deg);
+      }
+      .pic:nth-child(4n + 2) {
+        transform: rotate(1.2deg);
+      }
+      .pic:nth-child(4n + 3) {
+        transform: rotate(-0.6deg);
+      }
+      .pic:nth-child(4n) {
+        transform: rotate(2deg);
+      }
+      .pic:hover {
+        transform: rotate(0) translateY(-3px);
+      }
+      .pic::before {
+        content: "";
+        position: absolute;
+        top: -0.7rem;
+        left: 50%;
+        width: 3.6rem;
+        height: 1.3rem;
+        margin-left: -1.8rem;
+        background: rgba(255, 194, 26, 0.75);
+        transform: rotate(-3deg);
+      }
+      .frame {
+        aspect-ratio: var(--r, 4/5);
+        overflow: hidden;
+      }
+      .frame > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .pic .cap {
+        display: block;
+        padding: 0.4rem 0.2rem 0.5rem;
+        font: 1.55rem/1.1 var(--hand);
+      }
+
+      /* pesan */
+      .notes {
+        display: grid;
+        gap: 1.6rem;
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      }
+      .note {
+        background: var(--paper)
+          repeating-linear-gradient(
+            transparent 0 1.95rem,
+            var(--rule) 1.95rem 2rem
+          );
+        border: 1px solid var(--line);
+        padding: 0.2rem 1rem 1rem;
+        font: 1.65rem/2rem var(--hand);
+        white-space: pre-line;
+        transform: rotate(var(--t, 0deg));
+      }
+      .note small {
+        display: block;
+        text-align: right;
+        font: inherit;
+        color: var(--red);
+        margin-top: 0.4rem;
+      }
+
+      /* lagu: kaset */
+      .deck {
+        display: grid;
+        gap: 2.5rem;
+        align-items: center;
+        max-width: 48rem;
+      }
+      @media (min-width: 760px) {
+        .deck {
+          grid-template-columns: 22rem 1fr;
+        }
+      }
+      .tape {
+        background: none;
+        border: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 22rem;
+        transform: rotate(-3deg);
+        transition: transform 0.2s;
+      }
+      .tape:hover {
+        transform: rotate(0);
+      }
+      .tape svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(5px 6px 0 var(--line));
+      }
+      .tape .body {
+        fill: #14213d;
+        stroke: var(--line);
+        stroke-width: 2;
+      }
+      .tape .reel {
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      .tape.play .reel {
+        animation: reel 2.4s linear infinite;
+      }
+      @keyframes reel {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tape.play .reel {
+          animation: none;
+        }
+        .tape {
+          transition: none;
+        }
+      }
+      .deck-t .hand {
+        font-size: 2.1rem;
+        margin: 0 0 0.7rem;
+      }
+      .hint {
+        color: var(--muted);
+        margin: 0;
+        max-width: 20rem;
+        font-size: 0.95rem;
+      }
+
+      /* jeda & kemenangan */
+      .bframe {
+        overflow: hidden;
+        background: #dfe6f2;
+      }
+      .bframe img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .bento {
+        display: grid;
+        gap: 1.2rem;
+      }
+      @media (min-width: 560px) {
+        .bento {
+          grid-template-columns: 1fr 1fr;
+        }
+        .bento .b1 {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (min-width: 760px) {
+        .bento {
+          gap: 1.7rem;
+        }
+      }
+      .bcard,
+      .bigpic,
+      .dcard {
+        margin: 0;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 0.55rem 0.55rem 0;
+        box-shadow: 4px 5px 0 var(--line);
+        position: relative;
+      }
+      .bcard {
+        transition: transform 0.2s;
+      }
+      .bcard::before,
+      .bigpic::before,
+      .dcard::before {
+        content: "";
+        position: absolute;
+        top: -0.7rem;
+        left: 50%;
+        width: 3.6rem;
+        height: 1.3rem;
+        margin-left: -1.8rem;
+        background: rgba(255, 194, 26, 0.75);
+        transform: rotate(-3deg);
+      }
+      .bcard:nth-child(2)::before,
+      .dcard.dvideo::before {
+        transform: rotate(2.4deg);
+      }
+      .bcard:nth-child(3)::before,
+      .dcard.dphoto::before {
+        transform: rotate(-1.6deg);
+      }
+      .bcard .bframe {
+        aspect-ratio: 3/2;
+      }
+      .bcard.b1 .bframe {
+        aspect-ratio: 16/9;
+      }
+      .bcard img,
+      .bigpic img,
+      .dphoto img {
+        transition: transform 0.6s cubic-bezier(0.22, 0.7, 0.2, 1);
+      }
+      .bcard:hover {
+        transform: translateY(-3px);
+      }
+      .bcard:hover img {
+        transform: scale(1.03);
+      }
+      .bcard figcaption,
+      .dcard figcaption {
+        font: 1.55rem/1.1 var(--hand);
+        padding: 0.45rem 0.15rem 0.55rem;
+      }
+
+      .bigpic {
+        max-width: 52rem;
+        padding: 0.65rem 0.65rem 0;
+        box-shadow: 6px 7px 0 var(--line);
+        transform: rotate(-0.5deg);
+      }
+      .bigpic::before {
+        width: 7rem;
+        height: 1.6rem;
+        margin-left: -3.5rem;
+        transform: rotate(-1.6deg);
+      }
+      .bigpic .bframe {
+        aspect-ratio: 3/2;
+      }
+      .bigpic figcaption {
+        font: 1.9rem/1.1 var(--hand);
+        padding: 0.55rem 0.2rem 0.7rem;
+      }
+
+      .duo {
+        display: grid;
+        gap: 1.8rem;
+        align-items: center;
+      }
+      @media (min-width: 760px) {
+        .duo {
+          grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+          gap: 2.2rem;
+        }
+      }
+      .vwrap {
+        background: #0e1525;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .vwrap video {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: min(72vh, 32rem);
+        background: #0e1525;
+      }
+      .dphoto .bframe {
+        aspect-ratio: 3/2;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bcard,
+        .bcard img,
+        .bigpic img,
+        .dphoto img {
+          transition: none;
+        }
+      }
+
+      /* galeri: rol film */
+      .film {
+        background: #14213d;
+        margin: 0 -1.25rem;
+        position: relative;
+        padding: 1.4rem 0;
+      }
+      .film::before,
+      .film::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 9px;
+        background: repeating-linear-gradient(
+          90deg,
+          #f2f6fc 0 12px,
+          transparent 12px 26px
+        );
+        opacity: 0.9;
+      }
+      .film::before {
+        top: 0.5rem;
+      }
+      .film::after {
+        bottom: 0.5rem;
+      }
+      .film-track {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 0.6rem 1.25rem;
+        scrollbar-width: thin;
+      }
+      .shot {
+        flex: none;
+        width: min(78vw, 18rem);
+        margin: 0;
+        scroll-snap-align: center;
+      }
+      .shotf {
+        aspect-ratio: 3/2;
+        overflow: hidden;
+        background: #0e1525;
+        position: relative;
+      }
+      .shotf img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .shotf video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        background: #0e1525;
+      }
+      .shot.is-video {
+        cursor: pointer;
+      }
+      .pbtn {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+      .pbtn i {
+        width: 3.1rem;
+        height: 3.1rem;
+        border-radius: 50%;
+        background: rgba(20, 33, 61, 0.62);
+        border: 1.5px solid rgba(255, 255, 255, 0.9);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-style: normal;
+        font-size: 0.9rem;
+        padding-left: 0.15rem;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease;
+      }
+      .shot.is-video:hover .pbtn i,
+      .shot.is-video:focus-visible .pbtn i {
+        transform: scale(1.1);
+        background: var(--red);
+      }
+      .shot figcaption {
+        color: #fff;
+        font: 1.5rem/1.1 var(--hand);
+        padding: 0.5rem 0.1rem 0;
+      }
+
+      /* nama */
+      .roll {
+        font: 400 clamp(1.5rem, 4.5vw, 2.4rem)/1.5 var(--serif);
+        max-width: 44rem;
+      }
+      .roll span::after {
+        content: " · ";
+        color: var(--red);
+      }
+      .roll span:last-child::after {
+        content: "";
+      }
+
+      /* penutup */
+      .close {
+        max-width: 34rem;
+      }
+      .close p {
+        color: var(--muted);
+        margin: 0 0 1rem;
+      }
+      .close .last {
+        color: var(--ink);
+        font: 400 1.2rem/1.6 var(--serif);
+        margin-top: 1.6rem;
+      }
+      .sign {
+        font: 2.4rem/1 var(--hand);
+        color: var(--blue);
+        margin-top: 1.5rem;
+      }
+      footer .air {
+        height: 14px;
+      }
+
+      /* dialog + player */
+      dialog {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        max-width: min(94vw, 30rem);
+        width: 100%;
+        color: var(--ink);
+        overflow: visible;
+      }
+      dialog::backdrop {
+        background: rgba(20, 33, 61, 0.62);
+      }
+      .sheet {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 0.7rem 0.7rem 1.2rem;
+        position: relative;
+      }
+      .sheet .frame {
+        max-height: 62vh;
+        width: 100%;
+        margin: 0 auto;
+        aspect-ratio: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sheet .frame > img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 62vh;
+        object-fit: contain;
+      }
+      .sheet .who {
+        font: 400 1.5rem/1.1 var(--serif);
+        margin: 1rem 0.4rem 0.3rem;
+      }
+      .sheet .msg {
+        font: 1.7rem/1.15 var(--hand);
+        margin: 0 0.4rem;
+        white-space: pre-line;
+      }
+      #vdlg {
+        width: 100%;
+        max-width: min(94vw, 46rem);
+      }
+      #vdlg .sheet {
+        width: max-content;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .vframe {
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .vframe video {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 62vh;
+        display: block;
+        background: #0e1525;
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.8rem;
+      }
+      .nav button,
+      .x {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.45rem 1rem;
+      }
+      .nav button:hover,
+      .x:hover {
+        border-color: var(--ink);
+      }
+      .x {
+        position: absolute;
+        top: -1rem;
+        right: -0.3rem;
+      }
+      .player {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--paper);
+        border-top: 1px solid var(--line);
+        padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom, 0px));
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        z-index: 5;
+      }
+      .pp {
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 50%;
+        border: 0;
+        background: var(--sun);
+        color: #14213d;
+        flex: none;
+      }
+      .player .t {
+        min-width: 0;
+        flex: 1;
+      }
+      .player b {
+        display: block;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .player small {
+        color: var(--muted);
+      }
+      .bar {
+        height: 3px;
+        background: var(--line);
+        margin-top: 0.35rem;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--red);
+      }
+      /* ===== motion ===== */
+      .reveal {
+        opacity: 0;
+        translate: 0 20px;
+        transition:
+          opacity 0.7s cubic-bezier(0.22, 0.7, 0.2, 1) var(--d, 0ms),
+          translate 0.7s cubic-bezier(0.22, 0.7, 0.2, 1) var(--d, 0ms);
+      }
+      .reveal.in {
+        opacity: 1;
+        translate: 0 0;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          translate: 0 16px;
+        }
+        to {
+          opacity: 1;
+          translate: 0 0;
+        }
+      }
+      .post-in > div {
+        animation: rise 0.85s cubic-bezier(0.22, 0.7, 0.2, 1) both;
+      }
+      .post-in > div:nth-child(2) {
+        animation-delay: 0.16s;
+      }
+      @keyframes stampIn {
+        from {
+          opacity: 0;
+          transform: rotate(8deg) scale(1.18);
+        }
+        to {
+          opacity: 1;
+          transform: rotate(3deg) scale(1);
+        }
+      }
+      .stamp {
+        animation: stampIn 0.6s cubic-bezier(0.2, 0.9, 0.25, 1) 0.45s both;
+      }
+      @keyframes pmIn {
+        from {
+          opacity: 0;
+          transform: rotate(-24deg) scale(0.94);
+        }
+        to {
+          opacity: 1;
+          transform: rotate(-12deg) scale(1);
+        }
+      }
+      .pm {
+        animation: pmIn 0.8s cubic-bezier(0.2, 0.9, 0.25, 1) 0.6s both;
+      }
+      @keyframes playerIn {
+        from {
+          translate: 0 110%;
+        }
+        to {
+          translate: 0 0;
+        }
+      }
+      .player {
+        animation: playerIn 0.7s cubic-bezier(0.22, 0.7, 0.2, 1) 0.3s both;
+      }
+      @keyframes sheetIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      dialog[open] {
+        animation: sheetIn 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      dialog[open]::backdrop {
+        animation: fadeIn 0.3s ease both;
+      }
+      .frame img,
+      .shotf img {
+        transition: transform 0.6s cubic-bezier(0.22, 0.7, 0.2, 1);
+      }
+      .pic:hover .frame img,
+      .pic:focus-visible .frame img {
+        transform: scale(1.04);
+      }
+      .shot:hover .shotf img {
+        transform: scale(1.05);
+      }
+      .btn,
+      .pp,
+      .nav button,
+      .x {
+        transition:
+          transform 0.18s ease,
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .btn:active,
+      .pp:active,
+      .nav button:active,
+      .x:active {
+        transform: scale(0.96);
+      }
+      .tape:active {
+        transform: rotate(-3deg) scale(0.98);
+      }
+      .bar i {
+        transition: width 0.25s linear;
+      }
+      .tl li.reveal::before {
+        transform: scale(0.45);
+        opacity: 0;
+      }
+      .tl li.reveal.in::before {
+        transform: scale(1);
+        opacity: 1;
+        transition:
+          transform 0.45s cubic-bezier(0.2, 0.9, 0.25, 1)
+            calc(var(--d, 0ms) + 120ms),
+          opacity 0.3s linear calc(var(--d, 0ms) + 120ms);
+      }
+      .film-track {
+        cursor: grab;
+      }
+      .film-track.drag {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+        cursor: grabbing;
+        user-select: none;
+      }
+
+      /* ===== amplop pembuka =====
+         Tiga lapis ditumpuk: (0) tutup amplop yang terbuka, (1) kertas,
+         (2) badan amplop depan. Semua ukuran turun dari satu angka: --w. */
+      [hidden] {
+        display: none !important;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      body.gate-open {
+        overflow: hidden;
+      }
+      .gate {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        overflow: auto;
+        padding: max(1.5rem, env(safe-area-inset-top, 0px)) 1rem
+          max(1.5rem, env(safe-area-inset-bottom, 0px));
+        background: var(--tint);
+        transition: opacity 0.7s;
+      }
+      .gate.out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .env {
+        --w: min(90vw, 22rem);
+        --bh: calc(var(--w) * 120 / 220); /* tinggi badan amplop */
+        --rise: 19rem; /* tinggi kertas yang menyembul di atas amplop */
+        position: relative;
+        flex: none;
+        width: var(--w);
+        height: calc(var(--rise) + var(--bh));
+        margin: auto;
+        animation: envDrop 0.6s ease both;
+      }
+      @keyframes envDrop {
+        from {
+          opacity: 0;
+          translate: 0 -1.2rem;
+        }
+      }
+      .layer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: var(--bh);
+        overflow: visible;
+      }
+      .back {
+        z-index: 0;
+      }
+      .front {
+        z-index: 2;
+        filter: drop-shadow(4px 5px 0 var(--line));
+      }
+      .slot {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        clip-path: inset(-30rem -2rem 0 -2rem);
+      }
+      .paper {
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        top: 0;
+        height: calc(var(--rise) + var(--bh) * 0.6);
+        padding: 1rem 1.1rem;
+        background: var(--paper)
+          repeating-linear-gradient(
+            transparent 0 1.75rem,
+            var(--rule) 1.75rem 1.8rem
+          );
+        border: 1px solid var(--line);
+        box-shadow: 3px 4px 0 var(--line);
+        animation: paperSlide 1s 1.9s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+      }
+      @keyframes paperSlide {
+        from {
+          transform: translateY(calc(var(--rise) + 1rem));
+        }
+      }
+
+      /* tutup amplop: yang tertutup melipat naik, yang terbuka tumbuh ke atas */
+      .flapc,
+      .flapo,
+      .seal {
+        transform-box: fill-box;
+      }
+      .flapc {
+        transform-origin: 50% 0;
+        transform: scaleY(0);
+        animation: flapFoldUp 0.45s 1s ease-in both;
+      }
+      @keyframes flapFoldUp {
+        from {
+          transform: scaleY(1);
+        }
+      }
+      .flapo {
+        transform-origin: 50% 100%;
+        transform: scaleY(1);
+        animation: flapUnfold 0.45s 1.4s ease-out both;
+      }
+      @keyframes flapUnfold {
+        from {
+          transform: scaleY(0);
+        }
+      }
+      .seal {
+        transform-origin: center;
+        opacity: 0;
+        animation: sealFade 0.4s 0.9s both;
+      }
+      @keyframes sealFade {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      .t-ink {
+        fill: var(--ink);
+      }
+      .f-paper {
+        fill: var(--paper);
+      }
+      .f-tint {
+        fill: var(--tint);
+      }
+
+      /* penutupan: kertas masuk, tutup terbuka melipat turun, segel muncul lagi */
+      .closing .paper {
+        animation: paperSlideBack 0.8s cubic-bezier(0.5, 0, 0.7, 0.4) both;
+      }
+      @keyframes paperSlideBack {
+        from {
+          transform: none;
+        }
+        to {
+          transform: translateY(calc(var(--rise) + 1rem));
+        }
+      }
+      .closing .flapo {
+        animation: flapFoldDown 0.35s 0.8s ease-in both;
+      }
+      @keyframes flapFoldDown {
+        from {
+          transform: scaleY(1);
+        }
+        to {
+          transform: scaleY(0);
+        }
+      }
+      .closing .flapc {
+        animation: flapUnfoldDown 0.35s 1.15s ease-out both;
+      }
+      @keyframes flapUnfoldDown {
+        from {
+          transform: scaleY(0);
+        }
+        to {
+          transform: scaleY(1);
+        }
+      }
+      .closing .seal {
+        animation: sealIn 0.3s 1.5s both;
+      }
+      @keyframes sealIn {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* isi kertas */
+      .paper .hand {
+        font: 2rem/1.1 var(--hand);
+        margin: 0 0 0.9rem;
+      }
+      .paper input[type="text"] {
+        width: 100%;
+        margin: 0 0 1.1rem;
+        padding: 0.45rem 0.1rem;
+        border: 0;
+        border-bottom: 2px solid var(--ink);
+        border-radius: 0;
+        background: transparent;
+        font: 400 1.3rem var(--serif);
+      }
+      .paper input[type="text"]::placeholder {
+        color: var(--muted);
+        opacity: 0.7;
+      }
+      .paper .btn {
+        padding: 0.7rem 1.3rem;
+      }
+      .paper .btn:disabled {
+        background: var(--line);
+        color: var(--muted);
+        cursor: not-allowed;
+      }
+      .typed {
+        min-height: 9rem;
+        margin: 0 0 0.6rem;
+        font: 1.45rem/1.8rem var(--hand);
+        white-space: pre-line;
+        cursor: pointer;
+      }
+      .typed::after {
+        content: "";
+        display: inline-block;
+        width: 2px;
+        height: 1.2rem;
+        margin-left: 2px;
+        vertical-align: -0.15rem;
+        background: var(--red);
+        animation: caretBlink 1s steps(1) infinite;
+      }
+      .typed.done::after {
+        display: none;
+      }
+      @keyframes caretBlink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .chk {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 0 0 0.6rem;
+        padding: 0.45rem 0.65rem;
+        border: 1px solid var(--line);
+        border-radius: 0.5rem;
+        background: var(--tint);
+        font-size: 0.92rem;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+      .chk input {
+        width: 1.2rem;
+        height: 1.2rem;
+        accent-color: var(--red);
+      }
+      main:focus {
+        outline: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .pic {
+          transition: none;
+        }
+        .reveal {
+          opacity: 1;
+          translate: none;
+          transition: none;
+        }
+        .post-in > div,
+        .stamp,
+        .pm,
+        .player,
+        .env,
+        .paper,
+        .flapc,
+        .flapo,
+        dialog[open],
+        dialog[open]::backdrop {
+          animation: none;
+        }
+        .seal {
+          display: none;
+        }
+        .typed::after {
+          animation: none;
+        }
+        .gate {
+          transition: none;
+        }
+        .frame img,
+        .shotf img,
+        .btn,
+        .pp,
+        .nav button,
+        .x,
+        .pbtn i {
+          transition: none;
+        }
+        .tl li.reveal::before {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="gate-open">
+    <noscript>
+      <style>
+        .gate {
+          display: none !important;
+        }
+        body.gate-open {
+          overflow: auto;
+        }
+      </style>
+    </noscript>
+    <!-- ===== amplop pembuka ===== -->
+    <div
+      class="gate"
+      id="gate"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Amplop pembuka untuk Team Charlie"
+    >
+      <div class="env">
+        <!-- (0) tutup amplop yang terbuka, di belakang kertas -->
+        <svg class="layer back" viewBox="0 0 220 120" aria-hidden="true">
+          <defs>
+            <pattern
+              id="air"
+              patternUnits="userSpaceOnUse"
+              width="16"
+              height="16"
+              patternTransform="rotate(45)"
+            >
+              <rect width="16" height="16" fill="#fff" />
+              <rect width="5" height="16" fill="#D4202F" />
+              <rect x="8" width="5" height="16" fill="#2B5DB8" />
+            </pattern>
+          </defs>
+          <g class="flapo">
+            <polygon points="0,0 220,0 110,-70" fill="url(#air)" />
+            <polygon points="10,-4 210,-4 110,-59" class="f-tint" />
+          </g>
+        </svg>
+
+        <!-- (1) kertas -->
+        <div class="slot">
+          <div class="paper" id="paper">
+            <form id="nameForm" autocomplete="off">
+              <p class="hand" id="gt">Sebelum masuk, siapa namamu?</p>
+              <input
+                id="nameIn"
+                type="text"
+                maxlength="24"
+                placeholder="Tulis namamu di sini"
+                aria-label="Namamu"
+                required
+              />
+              <button class="btn" type="submit">Tulis</button>
+            </form>
+            <div id="letter" hidden>
+              <p class="typed" id="typed" aria-hidden="true"></p>
+              <p class="sr-only" id="typedStatus" role="status"></p>
+              <label class="chk" id="chkWrap" hidden
+                ><input type="checkbox" id="chk" /> Aku sudah pakai
+                earphone</label
+              >
+              <button class="btn" id="go" type="button" disabled hidden>
+                Lanjutkan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- (2) badan amplop depan + tutup yang masih tertutup -->
+        <svg class="layer front" viewBox="0 0 220 120" aria-hidden="true">
+          <rect width="220" height="120" fill="url(#air)" />
+          <rect x="5" y="5" width="210" height="110" class="f-paper" />
+          <path
+            d="M5 115 L110 62 L215 115"
+            fill="none"
+            stroke="var(--line)"
+            stroke-width="1.2"
+          />
+          <text
+            x="18"
+            y="30"
+            font-family="Reenie Beanie, cursive"
+            font-size="17"
+            class="t-ink"
+          >
+            Untuk:
+          </text>
+          <text
+            x="18"
+            y="48"
+            font-family="Reenie Beanie, cursive"
+            font-size="17"
+            class="t-ink"
+          >
+            Team Charlie
+          </text>
+          <g transform="rotate(3 187 32)">
+            <rect
+              x="172"
+              y="14"
+              width="30"
+              height="36"
+              fill="#FFC21A"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-dasharray="2 2"
+            />
+            <text
+              x="187"
+              y="35"
+              text-anchor="middle"
+              font-family="Young Serif, Georgia, serif"
+              font-size="8"
+              fill="#14213D"
+            >
+              2025
+            </text>
+          </g>
+          <g class="flapc">
+            <polygon points="0,0 220,0 110,70" fill="url(#air)" />
+            <polygon points="10,5 210,5 110,60" class="f-paper" />
+          </g>
+          <g class="seal">
+            <circle cx="110" cy="68" r="12" fill="#FFC21A" />
+            <text
+              x="110"
+              y="73"
+              text-anchor="middle"
+              font-family="Young Serif, Georgia, serif"
+              font-size="14"
+              fill="#14213D"
+            >
+              C
+            </text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="air" style="height: 12px" aria-hidden="true"></div>
+
+    <header class="wrap">
+      <div class="post air">
+        <div class="post-in">
+          <div>
+            <span class="hand to"
+              >Kalau kamu membuka ini, berarti kita sudah pulang
+              masing-masing.</span
+            >
+            <h1>Kita pernah sedekat ini.</h1>
+            <p>
+              Kiriman kecil untuk Team Charlie, Foto cetaknya sudah ada di
+              tangan mu, dan ini adalah bagian yang belum sempat terucapkan.
+            </p>
+            <button class="btn" id="start" type="button">
+              <span aria-hidden="true">▶</span> Putar kenangan
+            </button>
+          </div>
+          <div class="mail" aria-hidden="true">
+            <div class="stamp">
+              <span>Team<br />Charlie</span><b>2025</b>
+            </div>
+            <svg
+              class="pm"
+              viewBox="0 0 120 120"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="60" cy="60" r="52" />
+              <circle cx="60" cy="60" r="34" />
+              <path
+                id="arc"
+                d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0"
+                stroke="none"
+              />
+              <text
+                font-size="9.5"
+                font-family="Instrument Sans, sans-serif"
+                fill="currentColor"
+                stroke="none"
+                letter-spacing="3.8"
+              >
+                <textPath href="#arc">BESWAN 41 · TEAM CHARLIE ·</textPath>
+              </text>
+              <path d="M44 56h32M44 64h32" stroke-width="2.5" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="wrap">
+          <h2>Dari mana kita mulai</h2>
+          <p class="lead">
+            Tiga tahap yang kita lewati bareng, dan gak terasa waktu sudah
+            bejalan lebih cepat dari apa yang kita kira, satu tahun terasa
+            seperti hitungan hari, dan kenangan kita sudah pastinya jadi cerita
+            yang abadi.
+          </p>
+          <ol class="tl" id="tl"></ol>
+        </div>
+      </section>
+
+      <section class="tint">
+        <div class="wrap">
+          <h2>Maaf menambah berat barang bawaan yaa xixix</h2>
+          <p class="lead">
+            Di sini potret-potret lain dari hari-hari yang sama. Ketuk satu foto
+            untuk melihatnya lebih besar.
+          </p>
+          <div class="grid" id="grid"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Yang sempat terekam</h2>
+          <p class="lead">
+            Bukan foto yang rapi, justru itu yang paling kita ingat. Geser ke
+            samping.
+          </p>
+          <div class="film">
+            <div
+              class="film-track"
+              id="film"
+              tabindex="0"
+              aria-label="Galeri momen, geser ke samping"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tint">
+        <div class="wrap">
+          <h2>Satu lagu buat kita</h2>
+          <p class="lead">
+            Cuma satu, tapi cukup. Kalian adalah memorii baikkkkkkkk.
+          </p>
+          <div class="deck">
+            <button
+              class="tape"
+              id="tape"
+              type="button"
+              aria-label="Putar lagu Memori Baik"
+            >
+              <svg viewBox="0 0 320 200" aria-hidden="true">
+                <rect
+                  class="body"
+                  x="2"
+                  y="2"
+                  width="316"
+                  height="196"
+                  rx="14"
+                />
+                <rect
+                  x="22"
+                  y="16"
+                  width="276"
+                  height="112"
+                  rx="6"
+                  fill="#fff"
+                />
+                <rect
+                  x="22"
+                  y="16"
+                  width="276"
+                  height="26"
+                  rx="6"
+                  fill="#D4202F"
+                />
+                <rect x="22" y="30" width="276" height="12" fill="#D4202F" />
+                <text
+                  x="34"
+                  y="36"
+                  font-family="Reenie Beanie,cursive"
+                  font-size="23"
+                  fill="#fff"
+                >
+                  Sheila on 7
+                </text>
+                <text
+                  x="34"
+                  y="84"
+                  font-family="Young Serif,Georgia,serif"
+                  font-size="34"
+                  fill="#14213D"
+                >
+                  Memori Baik
+                </text>
+                <path
+                  d="M34 98h252M34 114h252"
+                  stroke="#C9D6EE"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="34"
+                  y="110"
+                  font-family="Reenie Beanie,cursive"
+                  font-size="20"
+                  fill="#2B5DB8"
+                >
+                  Nation Building 2026
+                </text>
+                <path
+                  d="M64 132H256L240 186H80Z"
+                  fill="#0E1525"
+                  stroke="#2A3654"
+                  stroke-width="2"
+                />
+                <g transform="translate(122 159)">
+                  <g class="reel">
+                    <circle r="17" fill="#fff" />
+                    <path
+                      d="M0-17V17M-17 0H17M-12-12L12 12M-12 12L12-12"
+                      stroke="#14213D"
+                      stroke-width="2"
+                    />
+                    <circle r="6" fill="#0E1525" />
+                  </g>
+                </g>
+                <g transform="translate(198 159)">
+                  <g class="reel">
+                    <circle r="17" fill="#fff" />
+                    <path
+                      d="M0-17V17M-17 0H17M-12-12L12 12M-12 12L12-12"
+                      stroke="#14213D"
+                      stroke-width="2"
+                    />
+                    <circle r="6" fill="#0E1525" />
+                  </g>
+                </g>
+                <g fill="#566078">
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="308" cy="12" r="4" />
+                  <circle cx="12" cy="188" r="4" />
+                  <circle cx="308" cy="188" r="4" />
+                </g>
+              </svg>
+            </button>
+            <div class="deck-t">
+              <p class="hand" id="songnote"></p>
+              <p class="hint">
+                Musiknya mengalun selama kamu membaca. Ketuk kaset kalau mau
+                menjeda.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Day 1 ini coy wkwk</h2>
+          <p class="lead">
+            Di hari pertama, kita langsung dihadapkan dengan yel-yel,
+            perkenalan, dan game pertama. Bahkan, HP pun harus dikumpulkan.
+            Jujur, awalnya aku masih cukup kaget melihat orang-orang sekeren
+            ini. Dari yang awalnya masih canggung, perlahan kita mulai akrab,
+            menyelesaikan setiap tantangan, dan berjuang bersama. Koordinasi
+            kita awalnya memang berantakan, tetapi siapa sangka, lama-lama
+            justru jadi salah satu tim terbaik. IZINNNNN!
+          </p>
+          <div class="bento">
+            <figure class="bcard b1">
+              <div class="bframe">
+                <img
+                  src="assets/santai_bersama/66d9f079-4f01-4628-a010-0de6e0d79f15.webp"
+                  alt="Team Charlie duduk melingkar di tanah saat jeda kegiatan"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>ini game kita modifikasi semua coyy</figcaption>
+            </figure>
+            <figure class="bcard b2">
+              <div class="bframe">
+                <img
+                  src="assets/santai_bersama/WhatsApp%20Image%202026-10-31%20at%2019.17.55.webp"
+                  alt="Dua peserta berfoto selfie dengan topi peserta"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>cihuyyyyy</figcaption>
+            </figure>
+            <figure class="bcard b3">
+              <div class="bframe">
+                <img
+                  src="assets/santai_bersama/WhatsApp%20Image%202026-10-31%20at%2019.17.22.webp"
+                  alt="Peserta mendengarkan arahan sebelum kegiatan dimulai"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>
+                Itu yangg belakang kaya ga siap ya ?? AHHAHA
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="tint">
+        <div class="wrap">
+          <h2>Kemenangan versi kita</h2>
+          <p class="lead">
+            Tidak ada piala di foto ini. Cuma kita, seragam merah, dan Outward
+            Bound yang jadi saksi bahwa hari itu kita sampai di garis akhir.
+            Salah satu lelah yangg ingin aku ulang AHAHHA.
+          </p>
+          <figure class="bigpic">
+            <div class="bframe">
+              <img
+                src="assets/kemenangan_bersama/kemenangan_1.webp"
+                alt="Foto bersama Team Charlie di depan Rumah Bambu setelah kegiatan selesai"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption>Sehat selalu semuanyaaa</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Sorak yang masih terasa</h2>
+          <p class="lead">
+            Yel-yel Kelompok 3. Kalau sekarang ditonton lagi, rasanya masih
+            sama: heboh, penuh semangat, dan sedikit terdengar seperti sedang
+            menantang kelompok lain AAHAHAHA (jujur, aku suka). yang penting
+            tetap kompak cihuyyy
+          </p>
+          <div class="duo">
+            <figure class="dcard dvideo">
+              <div class="vwrap">
+                <video
+                  id="yel"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  src="assets/kemenangan_bersama/kemenangan_video.mp4#t=0.1"
+                  aria-label="Video yel-yel kemenangan Kelompok 3"
+                >
+                  Browser kamu belum bisa memutar video ini.
+                </video>
+              </div>
+              <figcaption>Yel-yel kemenangan, Kelompok 3</figcaption>
+            </figure>
+            <figure class="dcard dphoto">
+              <div class="bframe">
+                <img
+                  src="assets/kemenangan_bersama/kemenangan_2.webp"
+                  alt="Team Charlie berpose bersama di depan Rumah Bambu"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>pose C, cihuyyyy untuk charlie</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="tint">
+        <div class="wrap">
+          <h2>Yang pernah ada di sini</h2>
+          <p class="lead">
+            Orang-orang yang pernah duduk bersama, berbagi cerita, dan tertawa
+            untuk hal-hal sederhana. Mungkin suatu hari nanti kita akan lupa
+            beberapa detailnya, tetapi nama-nama ini akan selalu menjadi bagian
+            dari cerita yang pernah kita jalani. Nama-nama yang semoga tidak
+            hanya tersimpan di halaman ini, tetapi juga dalam ingatan kita.
+          </p>
+          <p class="roll" id="roll"></p>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap close">
+          <h2>Sampai ketemu lagi.</h2>
+          <p>
+            Suatu hari nanti, kita akan kembali sibuk dengan kehidupan
+            masing-masing. Percakapan di grup mungkin tidak seramai sekarang,
+            dan nama-nama yang dulu selalu muncul perlahan akan tenggelam di
+            antara kesibukan.
+          </p>
+          <p>
+            Namun, jika suatu hari rasa rindu itu datang, semoga halaman ini
+            bisa membawa kita kembali pada masa ketika kita pernah menghabiskan
+            waktu bersama.
+          </p>
+          <p class="last">
+            Kita pernah sedekat itu, dan itu nyata. Kelak, kisah ini akan
+            menjadi cerita yang kita kenang, menjadi canda dan tawa di tengah
+            perjalanan kita menuju pendewasaan.
+          </p>
+          <div class="sign">Sindu</div>
+        </div>
+      </section>
+    </main>
+    <footer><div class="air" aria-hidden="true"></div></footer>
+
+    <dialog id="dlg" aria-label="Foto dan pesan">
+      <div class="sheet">
+        <button class="x" id="close" type="button">Tutup</button>
+        <div class="frame" id="dframe"></div>
+        <p class="who" id="dwho"></p>
+        <p class="msg" id="dmsg"></p>
+        <div class="nav">
+          <button id="prev" type="button">Sebelumnya</button
+          ><button id="next" type="button">Berikutnya</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="vdlg" aria-label="Video kenangan">
+      <div class="sheet">
+        <button class="x" id="vclose" type="button">Tutup</button>
+        <div class="vframe">
+          <video id="vvideo" controls playsinline preload="metadata"></video>
+        </div>
+        <p class="who" id="vwho"></p>
+      </div>
+    </dialog>
+
+    <div class="player">
+      <button class="pp" id="pp" type="button" aria-label="Putar atau jeda">
+        ▶
+      </button>
+      <div class="t">
+        <b id="ptitle">Pilih lagu</b><small id="phint">Sheila on 7</small>
+        <div class="bar"><i id="prog"></i></div>
+      </div>
+    </div>
+    <audio id="aud" preload="none"></audio>
+
+    <script>
+      /* ===== EDIT DI SINI ===== */
+      const DAYS = [
+        {
+          d: "Cerita 1",
+          t: "Character Building",
+          p: "Kita datang sebagai orang-orang asing, tanpa pernah menyangka akan saling mengenal dalam waktu sesingkat ini. Bertemu dengan kalian, orang-orang dari Sabang sampai Merauke, memberiku banyak pengalaman dan wawasan baru yang tidak pernah kubayangkan sebelumnya.Dari bangun pagi, senam, tantangan setiap hari, bahkan sampai suara habis, hingga lelahnya mengayuh perahu. Semua itu mungkin sederhana, tetapi akan selalu punya tempat tersendiri dalam ingatan. Foto yang aku berikan memang hanya satu, tetapi sengaja kubuat besar. Karena rasanya tidak cukup jika kenangan sebesar ini hanya diwakili oleh sesuatu yang kecil. Semoga foto ini menjadi pengingat bahwa kita pernah dipertemukan sebagai orang asing dan pulang membawa cerita satu sama lain. Sebab pada akhirnya, yang paling berat dari sebuah pertemuan bukanlah saat pertama kali bertemu, melainkan saat harus menyadari bahwa semuanya telah menjadi kenangan.",
+        },
+        {
+          d: "Cerita 2",
+          t: "Leadership Development",
+          p: "Di Leadership Development, kita bertemu dengan lebih banyak orang dan cerita yang berbeda. Meski tidak semuanya berasal dari team charlie huhuuhu, tapi ada banyak hal yang bisa dibagikan dan dipelajari. Mungkin tidak semua orang sempat kita kenal lebih dekat, tetapi setiap pertemuan tetap meninggalkan kesan tersendiri..",
+        },
+        {
+          d: "Cerita 3",
+          t: "Nation Building",
+          p: "Di Nation Building, kita kembali dipertemukan setelah melewati cerita masing-masing. Rasanya menyenangkan bisa kembali berkumpul, seolah melanjutkan percakapan yang sempat tertunda. Mungkin ini menjadi akhir dari rangkaian kegiatan kita, tetapi aku berharap bukan akhir dari pertemuan dan cerita yang masih bisa kita bagi bersama.",
+        },
+        {
+          d: "Setelahnya",
+          t: "Selamanya",
+          p: "Kegiatannya sudah selesai. Kita belum. Setelah ini, mungkin jalan kita akan kembali berbeda. Tapi semoga jarak dan waktu tidak membuat kita lupa bahwa pernah ada cerita yang kita jalani bersama. Sampai bertemu lagi, di waktu dan tempat yang tidak pernah kita rencanakan..",
+        },
+      ];
+      // FOTO = potret yang dipajang di dinding "Foto yang kamu pegang".
+      // src = alamat foto. r = rasio bingkai: "3/4", "4/5", "1/1". cap = keterangan di bawah foto, msg = pesan di dialog.
+      const PHOTOS = [
+        {
+          id: "foto-1",
+          cap: "Tim Charlie, bersama mass yogaaaa",
+          r: "3/4",
+          src: "assets/foto_bersama/WhatsApp Image 2026-10-31 at 19.14.54.webp",
+          msg: "Lelah, senang, semuanya jadi satu.\nBest team cihuy.",
+        },
+        {
+          id: "foto-2",
+          cap: "ayo pose katawa WKWK",
+          r: "3/4",
+          src: "assets/foto_bersama/WhatsApp Image 2026-10-31 at 19.15.02.webp",
+          msg: "sayaangg fotonya dikit yakk.., pls djarum kirimkan doksli itu (dokumen asli)",
+        },
+        {
+          id: "foto-3",
+          cap: "Makan malam di tenda sebelum merakit perahu",
+          r: "4/5",
+          src: "assets/foto_bersama/WhatsApp Image 2026-10-31 at 19.18.18.webp",
+          msg: "Nasi hangat, dan di selingi candaan Evan, Erwin, Alex wwkkw,\ndan paginya makanan di makan hewan liar.",
+        },
+        {
+          id: "foto-4",
+          cap: "di tengah waduk sambil ngantuk",
+          r: "4/5",
+          src: "assets/foto_bersama/WhatsApp Image 2026-10-31 at 19.18.19.webp",
+          msg: "Sampai di sini kita masih\nsatu perahu.",
+        },
+        {
+          id: "foto-5",
+          cap: "Di suruh nyemplung sama mas yoga wkwk",
+          r: "1/1",
+          src: "assets/foto_bersama/WhatsApp Image 2026-10-31 at 19.19.01.webp",
+          msg: "Pelampung siapa yhh yang gabisa ngambangg.\n Di situ Kita saling berpegang tangan.",
+        },
+        {
+          id: "foto-6",
+          cap: "kapten jos jis iki",
+          r: "4/5",
+          src: "assets/foto_bersama/WhatsApp Image 2026-10-31 at 19.19.05.webp",
+          msg: "aslinya pakai kano tapi karna banyak eceng gondok, akhirnya pakai perahu bjir (berat).",
+        },
+      ];
+      // NAMA = nama yang muncul di bagian "Yang pernah ada di sini"
+      const NAMES = [
+        "Sindu",
+        "Evan",
+        "Mahda",
+        "Clara",
+        "Eliza",
+        "Livia",
+        "Calista",
+        "Santa",
+        "Asybel",
+        "Alex",
+        "Erwin",
+        "Elly",
+        "Nelly",
+      ];
+      // GALLERY = momen bareng per tahap (beda dari PHOTOS yang potret). src = alamat foto/video, kosong = placeholder.
+      // video:true = kartu video, diputar di dialog saat diketuk.
+      const GALLERY = [
+        {
+          cap: "Menyusun Perahuuu",
+          src: "assets/kegiatan_bersama/WhatsApp Image 2026-10-31 at 19.19.13.webp",
+        },
+        {
+          cap: "Merakit perahuuu",
+          src: "assets/kegiatan_bersama/WhatsApp Image 2026-10-31 at 19.19.12.webp",
+        },
+        {
+          cap: "Didorong ke air",
+          src: "assets/kegiatan_bersama/WhatsApp Image 2026-10-31 at 19.19.13 (1).webp",
+        },
+        {
+          cap: "Dayung serempak cihuyyy",
+          src: "assets/kegiatan_bersama/rom5584_1775572914_2qRiXj86.webp",
+        },
+        {
+          cap: "Ini foto epic sih jujur",
+          src: "assets/kegiatan_bersama/rom5633_1775572914_OUYWHLtY.webp",
+        },
+        {
+          cap: "Di foto mas yogaaa",
+          src: "assets/kegiatan_bersama/WhatsApp Image 2026-10-31 at 19.18.19 (1).webp",
+        },
+        {
+          cap: "Dokumentasinya mas yogaa.. emmm..",
+          color: "#8A3FA0",
+          src: "assets/foto_bersama/WhatsApp Video 2026-10-31 at 19.18.59.mp4",
+          video: true,
+        },
+        {
+          cap: "Ayoo cepatt turun semuaakkkk",
+          color: "#3E4C73",
+          src: "assets/foto_bersama/WhatsApp Video 2026-10-31 at 19.19.10.mp4",
+          video: true,
+        },
+      ];
+      // src = alamat mp3 (kosong = buka Spotify). c = catatanmu tentang lagu itu.
+      const SONGS = [
+        {
+          t: "Memori Baik",
+          src: "assets/memori_baik.mp3",
+          c: "Apa pun yang terjadi di sini, kita mau mengingatnya sebagai memori yang baik.",
+        },
+      ];
+      /* ======================== */
+
+      const $ = (s) => document.querySelector(s),
+        el = (t, c, x) => {
+          const e = document.createElement(t);
+          if (c) e.className = c;
+          if (x != null) e.textContent = x;
+          return e;
+        };
+      const dlg = $("#dlg");
+      let cur = -1;
+
+      DAYS.forEach((o) => {
+        const li = el("li");
+        li.append(el("span", "hand", o.d), el("h3", 0, o.t), el("p", 0, o.p));
+        $("#tl").append(li);
+      });
+
+      function photo(p) {
+        if (p.src) {
+          const i = new Image();
+          i.src = p.src;
+          i.alt = p.cap || "Foto kenangan";
+          i.loading = "lazy";
+          return i;
+        }
+        const d = el("div", "ph", (p.cap || "?")[0]);
+        d.style.background = p.color || "#D4202F";
+        return d;
+      }
+      PHOTOS.forEach((p, i) => {
+        const b = el("button", "pic");
+        b.type = "button";
+        b.style.setProperty("--r", p.r);
+        const f = el("div", "frame");
+        f.append(photo(p));
+        b.append(f, el("span", "cap", p.cap));
+        b.onclick = () => open(i);
+        $("#grid").append(b);
+      });
+      NAMES.forEach((n) => $("#roll").append(el("span", 0, n)));
+
+      function open(i) {
+        cur = (i + PHOTOS.length) % PHOTOS.length;
+        const p = PHOTOS[cur];
+        const fr = $("#dframe");
+        fr.style.setProperty("--r", p.r);
+        fr.replaceChildren(photo(p));
+        $("#dwho").textContent = p.cap;
+        $("#dmsg").textContent = p.msg;
+        if (!dlg.open) dlg.showModal();
+        if (location.hash !== "#" + p.id)
+          history.replaceState(null, "", "#" + p.id);
+      }
+      function fromHash() {
+        const i = PHOTOS.findIndex((p) => p.id === location.hash.slice(1));
+        if (i >= 0) open(i);
+        else if (dlg.open) dlg.close();
+      }
+      $("#prev").onclick = () => open(cur - 1);
+      $("#next").onclick = () => open(cur + 1);
+      $("#close").onclick = () => dlg.close();
+      dlg.addEventListener("close", () => {
+        if (location.hash)
+          history.replaceState(null, "", location.pathname + location.search);
+      });
+      dlg.addEventListener("click", (e) => {
+        if (e.target === dlg) dlg.close();
+      });
+      addEventListener("hashchange", () => {
+        if (!document.getElementById("gate")) fromHash();
+      });
+
+      /* video: diputar di dialog */
+      const vdlg = $("#vdlg"),
+        vvideo = $("#vvideo"),
+        yel = $("#yel");
+      function openVideo(g) {
+        if (!aud.paused) aud.pause();
+        if (yel && !yel.paused) yel.pause();
+        vvideo.src = g.src;
+        $("#vwho").textContent = g.cap;
+        if (!vdlg.open) vdlg.showModal();
+        vvideo.play().catch(() => {});
+      }
+      $("#vclose").onclick = () => vdlg.close();
+      vdlg.addEventListener("click", (e) => {
+        if (e.target === vdlg) vdlg.close();
+      });
+      vdlg.addEventListener("close", () => {
+        vvideo.pause();
+      });
+
+      GALLERY.forEach((g, i) => {
+        const f = el("figure", "shot"),
+          fr = el("div", "shotf");
+        if (g.video) {
+          const v = document.createElement("video");
+          v.src = g.src + "#t=0.1";
+          v.preload = "metadata";
+          v.muted = true;
+          v.playsInline = true;
+          v.setAttribute("muted", "");
+          v.setAttribute("playsinline", "");
+          v.setAttribute("aria-hidden", "true");
+          fr.append(v);
+          const badge = el("span", "pbtn");
+          badge.append(el("i", 0, "▶"));
+          fr.append(badge);
+          f.classList.add("is-video");
+          f.tabIndex = 0;
+          f.setAttribute("role", "button");
+          f.setAttribute("aria-label", "Putar video: " + g.cap);
+          f.addEventListener("click", () => {
+            if (!dragMoved) openVideo(g);
+          });
+          f.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter" && e.key !== " ") return;
+            e.preventDefault();
+            openVideo(g);
+          });
+        } else if (g.src) {
+          const im = new Image();
+          im.src = g.src;
+          im.alt = g.cap;
+          im.loading = "lazy";
+          fr.append(im);
+        } else {
+          const d = el("div", "ph", String(i + 1));
+          d.style.background = g.color;
+          fr.append(d);
+        }
+        const c = el("figcaption");
+        c.textContent = g.cap;
+        f.append(fr, c);
+        $("#film").append(f);
+      });
+
+      /* motion */
+      const calm = matchMedia("(prefers-reduced-motion: reduce)");
+      const io =
+        !calm.matches && "IntersectionObserver" in window
+          ? new IntersectionObserver(
+              (es) =>
+                es.forEach((e) => {
+                  if (e.isIntersecting) {
+                    e.target.classList.add("in");
+                    io.unobserve(e.target);
+                  }
+                }),
+              { threshold: 0.15, rootMargin: "0px 0px -6% 0px" },
+            )
+          : null;
+      function reveal(nodes, stagger = 0) {
+        if (!io) return;
+        nodes.forEach((n, i) => {
+          if (n.getBoundingClientRect().top < innerHeight * 0.92) return;
+          n.style.setProperty("--d", i * stagger + "ms");
+          n.classList.add("reveal");
+          io.observe(n);
+        });
+      }
+      // elemen di dalam scroller horizontal (trek film) dipantau lewat wadahnya
+      function revealGroup(host, nodes, stagger = 0) {
+        if (
+          !io ||
+          !nodes.length ||
+          host.getBoundingClientRect().top < innerHeight * 0.92
+        )
+          return;
+        nodes.forEach((n, i) => {
+          n.style.setProperty("--d", i * stagger + "ms");
+          n.classList.add("reveal");
+        });
+        const o = new IntersectionObserver(
+          (es, obs) =>
+            es.forEach((e) => {
+              if (!e.isIntersecting) return;
+              nodes.forEach((n) => n.classList.add("in"));
+              obs.disconnect();
+            }),
+          { threshold: 0.12 },
+        );
+        o.observe(host);
+      }
+      reveal(
+        [...document.querySelectorAll("main section")].flatMap((s) => [
+          ...s.querySelectorAll("h2,.lead"),
+        ]),
+      );
+      reveal([...document.querySelectorAll("#tl li")], 90);
+      reveal([...document.querySelectorAll("#grid .pic")], 70);
+      revealGroup(
+        document.querySelector(".film"),
+        [...document.querySelectorAll("#film .shot")],
+        80,
+      );
+      reveal([...document.querySelectorAll(".bcard,.bigpic,.duo .dcard")], 80);
+      reveal([...document.querySelectorAll(".close p,.sign,#roll")], 70);
+
+      /* galeri: geser pakai drag + panah keyboard */
+      const filmEl = $("#film");
+      let drag = false,
+        dragX = 0,
+        dragL = 0,
+        dragMoved = false;
+      filmEl.addEventListener("pointerdown", (e) => {
+        if (
+          e.pointerType === "touch" ||
+          (e.pointerType === "mouse" && e.button !== 0)
+        )
+          return;
+        drag = true;
+        dragMoved = false;
+        dragX = e.clientX;
+        dragL = filmEl.scrollLeft;
+        filmEl.classList.add("drag");
+      });
+      addEventListener("pointermove", (e) => {
+        if (!drag) return;
+        if (Math.abs(e.clientX - dragX) > 6) dragMoved = true;
+        filmEl.scrollLeft = dragL - (e.clientX - dragX);
+      });
+      ["pointerup", "pointercancel", "pointerleave"].forEach((t) =>
+        addEventListener(t, () => {
+          if (!drag) return;
+          drag = false;
+          filmEl.classList.remove("drag");
+        }),
+      );
+      filmEl.addEventListener("keydown", (e) => {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        const step = (filmEl.querySelector(".shot")?.offsetWidth || 280) + 14;
+        filmEl.scrollBy({
+          left: e.key === "ArrowRight" ? step : -step,
+          behavior: calm.matches ? "auto" : "smooth",
+        });
+        e.preventDefault();
+      });
+
+      /* musik */
+      const aud = $("#aud"),
+        pp = $("#pp"),
+        tape = $("#tape");
+      let si = -1;
+      const HINT = {
+        ready: "Tekan Putar kenangan",
+        playing: "Sedang diputar",
+        paused: "Dijeda",
+        done: "Selesai, ketuk untuk ulang",
+        blocked: "Ketuk untuk memutar",
+      };
+      const hint = (t) => ($("#phint").textContent = t);
+      $("#songnote").textContent = SONGS[0].c;
+      $("#ptitle").textContent = SONGS[0].t;
+      hint(HINT.ready);
+      tape.onclick = () => toggle();
+      function spotify(s) {
+        window.open(
+          "https://open.spotify.com/search/" +
+            encodeURIComponent("Sheila on 7 " + s.t),
+          "_blank",
+          "noopener",
+        );
+      }
+      function pick(i) {
+        const s = SONGS[i];
+        if (!s) return;
+        if (!s.src) {
+          spotify(s);
+          return;
+        }
+        if (si !== i) {
+          si = i;
+          aud.src = s.src;
+          $("#ptitle").textContent = s.t;
+        }
+        aud.play().catch(() => hint(HINT.blocked));
+      }
+      function toggle() {
+        if (si < 0) {
+          const k = SONGS.findIndex((s) => s.src);
+          if (k < 0) {
+            spotify(SONGS[0]);
+            return;
+          }
+          pick(k);
+          return;
+        }
+        if (aud.paused) aud.play().catch(() => hint(HINT.blocked));
+        else aud.pause();
+      }
+      pp.onclick = toggle;
+      $("#start").onclick = toggle;
+      aud.addEventListener("play", () => {
+        if (yel && !yel.paused) yel.pause();
+        pp.textContent = "❚❚";
+        pp.setAttribute("aria-label", "Jeda lagu");
+        hint(HINT.playing);
+        tape.classList.add("play");
+      });
+      aud.addEventListener("pause", () => {
+        if (aud.ended) return;
+        pp.textContent = "▶";
+        pp.setAttribute("aria-label", "Putar lagu");
+        hint(HINT.paused);
+        tape.classList.remove("play");
+      });
+      aud.addEventListener("ended", () => {
+        const n = SONGS.findIndex((s, k) => k > si && s.src);
+        if (n >= 0) {
+          pick(n);
+          return;
+        }
+        pp.textContent = "▶";
+        tape.classList.remove("play");
+        hint(HINT.done);
+        $("#prog").style.width = "0%";
+      });
+      aud.addEventListener("timeupdate", () => {
+        if (aud.duration)
+          $("#prog").style.width = (aud.currentTime / aud.duration) * 100 + "%";
+      });
+
+      /* video yel-yel: musik ikut berhenti saat diputar */
+      if (yel)
+        yel.addEventListener("play", () => {
+          if (!aud.paused) aud.pause();
+        });
+
+      /* musik hanya diputar lewat tombol di hero section */
+      if ("mediaSession" in navigator && "MediaMetadata" in window) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: SONGS[0].t,
+          artist: "Sheila on 7",
+          album: "Nation Building 2026",
+        });
+        navigator.mediaSession.setActionHandler("play", () =>
+          aud.play().catch(() => {}),
+        );
+        navigator.mediaSession.setActionHandler("pause", () => aud.pause());
+      }
+      /* ===== amplop pembuka ===== */
+      (function initGate() {
+        const gate = $("#gate");
+        if (!gate) return;
+        const env = gate.querySelector(".env");
+        const paper = $("#paper");
+        const nameIn = $("#nameIn");
+        const nameForm = $("#nameForm");
+        const letter = $("#letter");
+        const typed = $("#typed");
+        const chkWrap = $("#chkWrap");
+        const chk = $("#chk");
+        const go = $("#go");
+        const calmGate = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // selalu mulai dari atas, jangan biarkan browser memulihkan posisi scroll
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        scrollTo(0, 0);
+
+        // kunci halaman di belakang amplop (termasuk untuk keyboard)
+        const outside = [...document.body.children].filter(
+          (n) => n !== gate && n.tagName !== "SCRIPT",
+        );
+        outside.forEach((n) => (n.inert = true));
+
+        const focusName = () => nameIn.focus();
+        if (calmGate) focusName();
+        else paper.addEventListener("animationend", focusName, { once: true });
+
+        nameForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = nameIn.value.trim().replace(/\s+/g, " ");
+          if (!name) return;
+
+          nameForm.hidden = true;
+          letter.hidden = false;
+
+          const text =
+            "Halo " +
+            name +
+            ",\nTerima kasih sudah jadi bagian cerita Team Charlie.\n" +
+            "Pakai earphone ya, karena ada musiknya.";
+          let k = 0;
+          let skipped = false;
+
+          const finish = () => {
+            typed.textContent = text;
+            typed.classList.add("done");
+            $("#typedStatus").textContent = text;
+            chkWrap.hidden = false;
+            go.hidden = false;
+          };
+          const tick = () => {
+            if (skipped) return;
+            k += 1;
+            typed.textContent = text.slice(0, k);
+            if (k >= text.length) return finish();
+            const ch = text[k - 1];
+            setTimeout(tick, ch === "\n" ? 500 : /[,.]/.test(ch) ? 220 : 40);
+          };
+
+          if (calmGate) finish();
+          else tick();
+          typed.addEventListener("click", () => {
+            skipped = true;
+            finish();
+          });
+        });
+
+        chk.addEventListener("change", () => {
+          go.disabled = !chk.checked;
+        });
+
+        function closeGate() {
+          document.body.classList.remove("gate-open");
+          outside.forEach((n) => (n.inert = false));
+          gate.remove();
+
+          // pindahkan fokus ke konten album
+          const main = document.querySelector("main");
+          if (main) {
+            main.tabIndex = -1;
+            main.focus({ preventScroll: true });
+          }
+          if (location.hash) fromHash();
+        }
+
+        go.addEventListener("click", () => {
+          go.disabled = true;
+          chk.disabled = true;
+
+          // klik ini adalah sentuhan pertama: aman untuk mulai memutar musik
+          const first = SONGS.findIndex((s) => s.src);
+          if (first >= 0) pick(first);
+
+          const wait = calmGate ? 0 : 2300;
+          if (!calmGate) env.classList.add("closing");
+          setTimeout(() => {
+            gate.classList.add("out");
+            setTimeout(closeGate, calmGate ? 0 : 700);
+          }, wait);
+        });
+      })();
+
+      if (!document.getElementById("gate")) fromHash();
+    </script>
+  </body>
+</html>
