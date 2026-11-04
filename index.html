@@ -217,6 +217,7 @@
       .tl p {
         margin: 0;
         color: var(--muted);
+        white-space: pre-line;
       }
 
       /* dinding */
@@ -579,6 +580,15 @@
         width: min(78vw, 18rem);
         margin: 0;
         scroll-snap-align: center;
+      }
+      @media (max-width: 560px) {
+        .film-track {
+          gap: 10px;
+          padding: 0.6rem 1rem;
+          -webkit-overflow-scrolling: touch;
+        }
+        .shot { width: min(74vw, 15rem); }
+        .shot figcaption { font-size: 1.3rem; }
       }
       .shotf {
         aspect-ratio: 3/2;
@@ -1215,6 +1225,69 @@
         outline: none;
       }
 
+      /* ===== SLIDE DECK ===== */
+      body.deck-mode { overflow: hidden; padding-bottom: 0; }
+      body.deck-mode .player { display: none; }
+      body.deck-mode > .air { display: none; }
+      .slide-deck {
+        display: flex; overflow-x: auto; overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        height: 100dvh; width: 100vw;
+        scrollbar-width: none;
+      }
+      .slide-deck::-webkit-scrollbar { display: none; }
+      .slide {
+        flex: none; width: 100vw; height: 100dvh;
+        overflow-y: auto; overflow-x: hidden;
+        scroll-snap-align: start; scroll-snap-stop: always;
+        overflow-wrap: break-word;
+      }
+      .slide > header, .slide > section { min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; }
+      .slide > header { padding-top: 3.5rem; padding-bottom: 4.5rem; }
+      .slide > footer { min-height: auto; }
+
+      .deck-prog {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+        display: flex; gap: 3px; padding: 10px 12px 8px;
+        background: linear-gradient(rgba(20,33,61,.72), rgba(20,33,61,0));
+        pointer-events: none;
+      }
+      .deck-seg { pointer-events: auto; flex: 1; height: 4px; background: rgba(255,255,255,.45); border-radius: 2px; overflow: hidden; cursor: pointer; }
+      .deck-seg .df { height: 100%; width: 0%; background: #fff; border-radius: 2px; }
+      .deck-seg.done .df { width: 100%; }
+
+      .slide-deck.no-snap { scroll-snap-type: none; }
+
+      .deck-nav {
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+        background: linear-gradient(transparent, rgba(20,33,61,.5));
+        pointer-events: none;
+      }
+      .deck-nav button {
+        pointer-events: auto; background: rgba(255,255,255,.9);
+        border: 0; border-radius: 999px; padding: .55rem 1.1rem;
+        font: 600 .85rem/1 var(--body); color: #14213d;
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        cursor: pointer; transition: transform .15s, opacity .2s;
+        display: flex; align-items: center; gap: .35rem;
+      }
+      .deck-nav button:active { transform: scale(.94); }
+      .deck-nav button:disabled { opacity: .35; pointer-events: none; }
+      .deck-nav .deck-auto {
+        background: var(--red); color: #fff;
+        min-width: 6.2rem; justify-content: center;
+      }
+      .deck-nav .deck-auto:hover { background: #b81a28; }
+      @media (max-width: 420px) {
+        .deck-nav { padding-left: 8px; padding-right: 8px; gap: 6px; }
+        .deck-nav button { padding: .5rem .7rem; font-size: .75rem; }
+        .deck-nav .deck-auto { min-width: 0; }
+      }
+
+      body.gate-open .deck-prog, body.gate-open .deck-nav { display: none; }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -1417,10 +1490,10 @@
             >
             <h1>Kita pernah sedekat ini.</h1>
             <p>
-              Kiriman kecil untuk Team Charlie, Foto cetaknya sudah ada di
-              tangan mu, dan ini adalah bagian yang belum sempat terucapkan.
+              Kiriman kecil untuk Team Charlie. Fotonya sudah di tanganmu, ini
+              bagian yang belum sempat terucap.
             </p>
-            <button class="btn" id="start" type="button">
+            <button class="btn" id="start" type="button" hidden>
               <span aria-hidden="true">▶</span> Putar kenangan
             </button>
           </div>
@@ -1463,10 +1536,9 @@
         <div class="wrap">
           <h2>Dari mana kita mulai</h2>
           <p class="lead">
-            Tiga tahap yang kita lewati bareng, dan gak terasa waktu sudah
-            bejalan lebih cepat dari apa yang kita kira, satu tahun terasa
-            seperti hitungan hari, dan kenangan kita sudah pastinya jadi cerita
-            yang abadi.
+            Tiga tahap, satu tahun yang terasa seperti hitungan hari. Waktu
+            berlari lebih cepat dari kita, tapi ada yang berhasil kita tahan:
+            cerita ini.
           </p>
           <ol class="tl" id="tl"></ol>
         </div>
@@ -1675,9 +1747,9 @@
         <div class="wrap">
           <h2>Kemenangan versi kita</h2>
           <p class="lead">
-            Tidak ada piala di foto ini. Cuma kita, seragam merah, dan Outward
-            Bound yang jadi saksi bahwa hari itu kita sampai di garis akhir.
-            Salah satu lelah yangg ingin aku ulang AHAHHA.
+            Tidak ada piala di foto ini. Hanya kita, seragam merah, dan Outward
+            Bound sebagai saksi bahwa hari itu kita sampai di garis akhir.
+            Salah satu lelah yang ingin kuulang.
           </p>
           <figure class="bigpic">
             <div class="bframe">
@@ -1737,11 +1809,10 @@
         <div class="wrap">
           <h2>Yang pernah ada di sini</h2>
           <p class="lead">
-            Orang-orang yang pernah duduk bersama, berbagi cerita, dan tertawa
-            untuk hal-hal sederhana. Mungkin suatu hari nanti kita akan lupa
-            beberapa detailnya, tetapi nama-nama ini akan selalu menjadi bagian
-            dari cerita yang pernah kita jalani. Nama-nama yang semoga tidak
-            hanya tersimpan di halaman ini, tetapi juga dalam ingatan kita.
+            Yang pernah duduk bareng di depan tenda dengan angin yang dingin
+            kala itu, berbagi cerita, dan menertawakan hal-hal sepele. Detailnya
+            mungkin luntur satu per satu. Namanya jangan. Semoga nama-nama ini
+            tak hanya tinggal di halaman ini, tapi juga di ingatan kita.
           </p>
           <p class="roll" id="roll"></p>
         </div>
@@ -1751,20 +1822,17 @@
         <div class="wrap close">
           <h2>Sampai ketemu lagi.</h2>
           <p>
-            Suatu hari nanti, kita akan kembali sibuk dengan kehidupan
-            masing-masing. Percakapan di grup mungkin tidak seramai sekarang,
-            dan nama-nama yang dulu selalu muncul perlahan akan tenggelam di
-            antara kesibukan.
+            Suatu hari kita akan sibuk dengan hidup masing-masing. Grup tak lagi
+            seramai sekarang, dan nama-nama yang dulu selalu muncul akan
+            tenggelam pelan-pelan di antara kesibukan.
           </p>
           <p>
-            Namun, jika suatu hari rasa rindu itu datang, semoga halaman ini
-            bisa membawa kita kembali pada masa ketika kita pernah menghabiskan
-            waktu bersama.
+            Tapi kalau suatu hari rindu itu datang, semoga halaman ini jadi
+            jalan pulang.
           </p>
           <p class="last">
-            Kita pernah sedekat itu, dan itu nyata. Kelak, kisah ini akan
-            menjadi cerita yang kita kenang, menjadi canda dan tawa di tengah
-            perjalanan kita menuju pendewasaan.
+            Kita pernah sedekat itu, dan itu nyata. Kelak, kisah ini akan jadi
+            canda dan tawa di tengah perjalanan kita menuju pendewasaan.
           </p>
           <div class="sign">Sindu</div>
         </div>
@@ -1812,22 +1880,22 @@
         {
           d: "Cerita 1",
           t: "Character Building",
-          p: "Kita datang sebagai orang-orang asing, tanpa pernah menyangka akan saling mengenal dalam waktu sesingkat ini. Bertemu dengan kalian, orang-orang dari Sabang sampai Merauke, memberiku banyak pengalaman dan wawasan baru yang tidak pernah kubayangkan sebelumnya.Dari bangun pagi, senam, tantangan setiap hari, bahkan sampai suara habis, hingga lelahnya mengayuh perahu. Semua itu mungkin sederhana, tetapi akan selalu punya tempat tersendiri dalam ingatan. Foto yang aku berikan memang hanya satu, tetapi sengaja kubuat besar. Karena rasanya tidak cukup jika kenangan sebesar ini hanya diwakili oleh sesuatu yang kecil. Semoga foto ini menjadi pengingat bahwa kita pernah dipertemukan sebagai orang asing dan pulang membawa cerita satu sama lain. Sebab pada akhirnya, yang paling berat dari sebuah pertemuan bukanlah saat pertama kali bertemu, melainkan saat harus menyadari bahwa semuanya telah menjadi kenangan.",
+          p: "Kita datang sebagai orang asing, tanpa tahu sedang menuju orang-orang yang akan sulit dilupakan. Dari Sabang sampai Merauke, kalian membawa logat, cerita, dan cara pandang yang tidak kutemukan di buku mana pun.\n\nSemuanya terdengar sederhana: bangun pagi, senam, tantangan yang datang bertubi-tubi, suara yang habis lebih dulu daripada semangat, tangan yang pegal mendayung. Tapi hal-hal sederhana itulah yang paling sering ikut pulang bersama kita.\n\nFotonya cuma satu, dan kubuat besar. Rasanya kurang adil kalau kenangan sebesar ini hanya diwakili sesuatu yang kecil.\n\nDan aku belajar satu hal: pertemuan tidak berat di awalnya. Beratnya di ujung, saat kita sadar semuanya sudah resmi menjadi kenangan.",
         },
         {
           d: "Cerita 2",
           t: "Leadership Development",
-          p: "Di Leadership Development, kita bertemu dengan lebih banyak orang dan cerita yang berbeda. Meski tidak semuanya berasal dari team charlie huhuuhu, tapi ada banyak hal yang bisa dibagikan dan dipelajari. Mungkin tidak semua orang sempat kita kenal lebih dekat, tetapi setiap pertemuan tetap meninggalkan kesan tersendiri..",
+          p: "Di tahap ini, lingkarannya melebar. Wajah baru, cerita baru, dan tidak semuanya kumpul bareng Charlie (huhu). Tidak semua sempat kita kenal sampai ke dalam, tapi tak ada pertemuan yang lewat tanpa meninggalkan jejak.",
         },
         {
           d: "Cerita 3",
           t: "Nation Building",
-          p: "Di Nation Building, kita kembali dipertemukan setelah melewati cerita masing-masing. Rasanya menyenangkan bisa kembali berkumpul, seolah melanjutkan percakapan yang sempat tertunda. Mungkin ini menjadi akhir dari rangkaian kegiatan kita, tetapi aku berharap bukan akhir dari pertemuan dan cerita yang masih bisa kita bagi bersama.",
+          p: "Setelah menjalani cerita masing-masing, kita dipertemukan lagi. Rasanya seperti melanjutkan percakapan yang sempat ditunda, hanya saja kali ini kita tahu itu bab terakhir. Aku berharap ini cuma titik koma, bukan titik.",
         },
         {
           d: "Setelahnya",
           t: "Selamanya",
-          p: "Kegiatannya sudah selesai. Kita belum. Setelah ini, mungkin jalan kita akan kembali berbeda. Tapi semoga jarak dan waktu tidak membuat kita lupa bahwa pernah ada cerita yang kita jalani bersama. Sampai bertemu lagi, di waktu dan tempat yang tidak pernah kita rencanakan..",
+          p: "Kegiatannya selesai. Kita belum. Setelah ini jalan kita mungkin bercabang lagi, semoga jarak dan waktu hanya menjauhkan langkah, bukan ingatan. Sampai bertemu lagi, di waktu dan tempat yang tidak pernah kita rencanakan.",
         },
       ];
       // FOTO = potret yang dipajang di dinding "Foto yang kamu pegang".
@@ -2018,7 +2086,6 @@
         vvideo = $("#vvideo"),
         yel = $("#yel");
       function openVideo(g) {
-        if (!aud.paused) aud.pause();
         if (yel && !yel.paused) yel.pause();
         vvideo.src = g.src;
         $("#vwho").textContent = g.cap;
@@ -2186,7 +2253,7 @@
         tape = $("#tape");
       let si = -1;
       const HINT = {
-        ready: "Tekan Putar kenangan",
+        ready: "Ketuk kaset untuk memutar",
         playing: "Sedang diputar",
         paused: "Dijeda",
         done: "Selesai, ketuk untuk ulang",
@@ -2264,11 +2331,7 @@
           $("#prog").style.width = (aud.currentTime / aud.duration) * 100 + "%";
       });
 
-      /* video yel-yel: musik ikut berhenti saat diputar */
-      if (yel)
-        yel.addEventListener("play", () => {
-          if (!aud.paused) aud.pause();
-        });
+      /* video yel-yel: tidak mematikan musik */
 
       /* musik hanya diputar lewat tombol di hero section */
       if ("mediaSession" in navigator && "MediaMetadata" in window) {
@@ -2360,13 +2423,11 @@
           outside.forEach((n) => (n.inert = false));
           gate.remove();
 
-          // pindahkan fokus ke konten album
-          const main = document.querySelector("main");
-          if (main) {
-            main.tabIndex = -1;
-            main.focus({ preventScroll: true });
-          }
+          const dk = document.getElementById("slideDeck");
+          if (dk) { dk.inert = false; dk.tabIndex = -1; dk.focus({ preventScroll: true }); }
+          document.querySelectorAll(".deck-prog,.deck-nav").forEach(n => (n.inert = false));
           if (location.hash) fromHash();
+          if (window._deckStart) window._deckStart();
         }
 
         go.addEventListener("click", () => {
@@ -2387,6 +2448,189 @@
       })();
 
       if (!document.getElementById("gate")) fromHash();
+
+      /* ===== SLIDE DECK ===== */
+      (function () {
+        const MIN_S = 3, WPS = 4;
+        const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+        const mainEl = document.querySelector("main");
+        const hdr = document.querySelector("header.wrap");
+        const ftr = document.querySelector("footer");
+        const secs = [...mainEl.querySelectorAll(":scope > section")];
+
+        const deck = document.createElement("div");
+        deck.className = "slide-deck"; deck.id = "slideDeck";
+        const slides = [];
+        function wrap(n) { const s = document.createElement("div"); s.className = "slide"; s.appendChild(n); deck.appendChild(s); slides.push(s); }
+        if (hdr) wrap(hdr);
+        secs.forEach(s => wrap(s));
+        if (ftr) wrap(ftr);
+        mainEl.replaceWith(deck);
+        if (document.body.classList.contains("gate-open")) deck.inert = true;
+        document.body.classList.add("deck-mode");
+
+        // durasi per slide
+        const dur = slides.map(s => {
+          const w = (s.textContent || "").trim().split(/\s+/).filter(Boolean).length;
+          return Math.max(MIN_S, w / WPS);
+        });
+
+        // progress bar
+        const bar = document.createElement("div"); bar.className = "deck-prog";
+        const segs = slides.map((_, i) => {
+          const sg = document.createElement("div"); sg.className = "deck-seg";
+          const fl = document.createElement("div"); fl.className = "df";
+          sg.appendChild(fl); sg.onclick = () => { goTo(i); resumeAuto(); };
+          bar.appendChild(sg); return { sg, fl };
+        });
+        document.body.appendChild(bar);
+        if (document.body.classList.contains("gate-open")) bar.inert = true;
+
+        // nav buttons
+        const nav = document.createElement("div"); nav.className = "deck-nav";
+        const bPrev = document.createElement("button"); bPrev.type = "button"; bPrev.textContent = "← Sebelumnya";
+        const bAuto = document.createElement("button"); bAuto.type = "button"; bAuto.textContent = "▶ Auto"; bAuto.className = "deck-auto";
+        const bNext = document.createElement("button"); bNext.type = "button"; bNext.textContent = "Selanjutnya →";
+        nav.append(bPrev, bAuto, bNext);
+        document.body.appendChild(nav);
+        if (document.body.classList.contains("gate-open")) nav.inert = true;
+
+        let cur = 0, elapsed = 0, auto = false, last = 0, paused = false, looping = false;
+
+        function goTo(i) {
+          i = Math.max(0, Math.min(i, slides.length - 1));
+          resetSub(slides[cur]);
+          cur = i; elapsed = 0;
+          slides[i].scrollTop = 0;
+          if (auto) deck.classList.add("no-snap");
+          deck.scrollTo({ left: i * innerWidth, behavior: reduced.matches ? "auto" : "smooth" });
+          updBar();
+        }
+
+        function updBar() {
+          segs.forEach((s, i) => {
+            s.sg.classList.toggle("done", i < cur);
+            if (i < cur) s.fl.style.width = "100%";
+            else if (i === cur) s.fl.style.width = Math.min(100, (elapsed / dur[i]) * 100) + "%";
+            else s.fl.style.width = "0%";
+          });
+          bPrev.disabled = cur === 0;
+          bNext.disabled = cur === slides.length - 1;
+          const label = (auto && !paused) ? "❚❚ Jeda" : "▶ Auto";
+          if (bAuto.textContent !== label) bAuto.textContent = label;
+        }
+
+        // auto-scroll engine
+        function startLoop() {
+          if (looping) return;
+          looping = true; last = 0;
+          requestAnimationFrame(tick);
+        }
+        function startAuto() { auto = true; paused = false; deck.classList.add("no-snap"); startLoop(); updBar(); }
+        function stopAuto() { auto = false; paused = false; deck.classList.remove("no-snap"); updBar(); }
+        function pauseAuto() { paused = true; deck.classList.remove("no-snap"); updBar(); }
+        function resumeAuto() { if (!auto) return; paused = false; deck.classList.add("no-snap"); startLoop(); updBar(); }
+
+        function subScroll(slide, frac) {
+          const my = slide.scrollHeight - slide.clientHeight;
+          if (my > 0) slide.scrollTop = my * frac;
+          slide.querySelectorAll(".film-track").forEach(t => {
+            const mx = t.scrollWidth - t.clientWidth;
+            if (mx > 0) { t.style.scrollSnapType = "none"; t.scrollLeft = mx * frac; }
+          });
+        }
+        function resetSub(slide) { slide.querySelectorAll(".film-track").forEach(t => { t.style.scrollSnapType = ""; }); }
+
+        function tick(ts) {
+          if (!auto || paused) { looping = false; return; }
+          if (!last) { last = ts; requestAnimationFrame(tick); return; }
+          const dt = Math.min((ts - last) / 1000, 0.1); last = ts;
+          elapsed += dt;
+          subScroll(slides[cur], Math.min(1, elapsed / dur[cur]));
+          updBar();
+          if (elapsed >= dur[cur]) {
+            resetSub(slides[cur]);
+            if (cur < slides.length - 1) { cur++; elapsed = 0; goTo(cur); }
+            else { auto = false; paused = false; looping = false; deck.classList.remove("no-snap"); updBar(); return; }
+          }
+          requestAnimationFrame(tick);
+        }
+
+        // tombol auto scroll: nyala / jeda / lanjut
+        bAuto.onclick = () => {
+          if (!auto) {
+            if (cur === slides.length - 1 && elapsed >= dur[cur]) goTo(0);
+            startAuto();
+          } else if (paused) resumeAuto();
+          else stopAuto();
+        };
+
+        // nav buttons — pindah slide, auto tetap jalan
+        bPrev.onclick = () => { goTo(cur - 1); if (auto && !paused) startLoop(); };
+        bNext.onclick = () => { goTo(cur + 1); if (auto && !paused) startLoop(); };
+
+        // keyboard
+        document.addEventListener("keydown", e => {
+          if (e.key === "ArrowLeft") { e.preventDefault(); bPrev.onclick(); }
+          else if (e.key === "ArrowRight") { e.preventDefault(); bNext.onclick(); }
+        });
+
+        // touch/pointer → pause auto
+        ["touchstart", "pointerdown"].forEach(ev => {
+          deck.addEventListener(ev, () => { if (auto && !paused) pauseAuto(); }, { passive: true });
+        });
+
+        // scroll selesai → lanjut auto dari titik berhenti
+        let scrollEnd;
+        deck.addEventListener("scroll", () => {
+          clearTimeout(scrollEnd);
+          scrollEnd = setTimeout(() => {
+            const idx = Math.round(deck.scrollLeft / innerWidth);
+            if (idx !== cur && idx >= 0 && idx < slides.length) {
+              resetSub(slides[cur]); cur = idx; elapsed = 0; updBar();
+            }
+            if (auto && paused) resumeAuto();
+          }, 200);
+        }, { passive: true });
+
+        // scroll vertikal / galeri di dalam slide → sinkronkan progres lalu lanjut
+        function syncFromScroll(slide) {
+          const my = slide.scrollHeight - slide.clientHeight;
+          let frac = 0;
+          if (my > 0) {
+            frac = slide.scrollTop / my;
+          } else {
+            const t = slide.querySelector(".film-track");
+            if (t) {
+              const mx = t.scrollWidth - t.clientWidth;
+              if (mx > 0) frac = t.scrollLeft / mx;
+            }
+          }
+          elapsed = Math.max(0, Math.min(dur[cur], frac * dur[cur]));
+        }
+        let slideEnd;
+        slides.forEach(slide => {
+          const onScroll = () => {
+            if (!auto || !paused) return;
+            clearTimeout(slideEnd);
+            slideEnd = setTimeout(() => {
+              syncFromScroll(slide);
+              updBar();
+              resumeAuto();
+            }, 200);
+          };
+          slide.addEventListener("scroll", onScroll, { passive: true });
+          slide.querySelectorAll(".film-track").forEach(t =>
+            t.addEventListener("scroll", onScroll, { passive: true })
+          );
+        });
+
+        // start setelah gate ditutup
+        const canAuto = !location.hash && !reduced.matches;
+        window._deckStart = () => { if (canAuto) { goTo(0); startAuto(); } };
+        if (!document.getElementById("gate") && canAuto) { goTo(0); startAuto(); }
+        updBar();
+      })();
     </script>
   </body>
 </html>
